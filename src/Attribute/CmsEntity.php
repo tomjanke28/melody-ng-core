@@ -12,7 +12,7 @@ class CmsEntity
 
   public ?string $label;
 
-  public function __construct(array $options) {
+  public function __construct(array $options = []) {
     $resolver = new OptionsResolver();
 
     $resolver->setDefault("label", null);

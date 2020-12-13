@@ -28,7 +28,7 @@ class DataTransferObjectHandler
     $dataTransferObject = [];
 
     foreach ($this->cmsPropertyReader->getCmsProperties($fromEntity) as $propertyName => $cmsProperty)
-      $this->propertyAccessor->setValue($dataTransferObject, $propertyName, is_object($value = $this->propertyAccessor->getValue($fromEntity, $propertyName)) ? clone $value : $value);
+      $this->propertyAccessor->setValue($dataTransferObject, "[{$propertyName}]", is_object($value = $this->propertyAccessor->getValue($fromEntity, $propertyName)) ? clone $value : $value);
 
     return $dataTransferObject;
   }
@@ -42,7 +42,7 @@ class DataTransferObjectHandler
    */
   public function writeDataTransferObject(array $dataTransferObject, object $toEntity): object {
     foreach ($this->cmsPropertyReader->getCmsProperties($toEntity) as $propertyName => $cmsProperty)
-      if (($newValue = $this->propertyAccessor->getValue($dataTransferObject, $propertyName)) != $this->propertyAccessor->getValue($toEntity, $propertyName))
+      if (($newValue = $this->propertyAccessor->getValue($dataTransferObject, "[{$propertyName}]")) != $this->propertyAccessor->getValue($toEntity, $propertyName))
         $this->propertyAccessor->setValue($toEntity, $propertyName, $newValue);
 
     return $toEntity;

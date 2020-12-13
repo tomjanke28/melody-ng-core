@@ -13,7 +13,7 @@ class CmsProperty
   public ?string $formType;
   public array $formOptions;
 
-  public function __construct(array $options) {
+  public function __construct(array $options = []) {
     $resolver = new OptionsResolver();
 
     $resolver->setDefault("form_type", null);
