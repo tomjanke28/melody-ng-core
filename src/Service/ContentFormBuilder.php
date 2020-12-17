@@ -24,7 +24,7 @@ use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 
-class CmsPropertyFormBuilder
+class ContentFormBuilder
 {
 
   public function __construct(

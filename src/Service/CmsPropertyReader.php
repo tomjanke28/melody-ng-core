@@ -16,7 +16,14 @@ class CmsPropertyReader
   private array $loadedCmsProperties = [];
   private array $cache = [];
 
+  public function __construct(
+    private CmsEntityFinder $cmsEntityFinder
+  ) {
+  }
+
   private function readCmsProperties(string $entityClass, ?string $group): array {
+    $this->cmsEntityFinder->getCmsEntity($entityClass);
+
     $properties = [];
 
     try {
