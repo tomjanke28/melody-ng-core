@@ -40,29 +40,31 @@ class CmsPropertyFormBuilder
    * Builds a form based on the given entity instance.
    *
    * @param object $entity
+   * @param string|null $group
    * @param array $options
    * @return FormInterface
    */
-  public function buildFormForEntity(object $entity, array $options = []): FormInterface {
-    return $this->buildForm(get_class($entity), $this->dataTransferObjectHandler->createDataTransferObject($entity), $options);
+  public function buildFormForEntity(object $entity, ?string $group = null, array $options = []): FormInterface {
+    return $this->buildForm(get_class($entity), $group, $this->dataTransferObjectHandler->createDataTransferObject($entity), $options);
   }
 
   /**
    * Builds a form based on the given entity class and data array.
    *
    * @param string $entityClass
+   * @param string|null $group
    * @param array $data
    * @param array $options
    * @return FormInterface
    */
-  public function buildForm(string $entityClass, array $data = [], array $options = []): FormInterface {
+  public function buildForm(string $entityClass, ?string $group = null, array $data = [], array $options = []): FormInterface {
     $formBuilder = $this->formFactory->createBuilder(FormType::class, $data, $options);
 
     /**
      * @var string $propertyName
      * @var CmsProperty $cmsProperty
      */
-    foreach ($this->cmsPropertyReader->getCmsProperties($entityClass) as $propertyName => $cmsProperty)
+    foreach ($this->cmsPropertyReader->getCmsProperties($entityClass, $group) as $propertyName => $cmsProperty)
       $formBuilder->add($propertyName, $cmsProperty->formType ?? $this->guessFormType($entityClass, $propertyName), $cmsProperty->formOptions);
 
     return $formBuilder->getForm();

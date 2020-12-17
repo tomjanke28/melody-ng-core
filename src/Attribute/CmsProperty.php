@@ -12,6 +12,7 @@ class CmsProperty
 
   public ?string $formType;
   public array $formOptions;
+  public ?string $group;
 
   public function __construct(array $options = []) {
     $resolver = new OptionsResolver();
@@ -22,9 +23,13 @@ class CmsProperty
     $resolver->setDefault("form_options", []);
     $resolver->setAllowedTypes("form_options", ["array"]);
 
+    $resolver->setDefault("group", null);
+    $resolver->setAllowedTypes("group", ["string", "null"]);
+
     [
       "form_type" => $this->formType,
-      "form_options" => $this->formOptions
+      "form_options" => $this->formOptions,
+      "group" => $this->group
     ] = $resolver->resolve($options);
   }
 
