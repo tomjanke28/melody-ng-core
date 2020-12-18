@@ -27,7 +27,7 @@ class CmsPropertyReader
     $properties = [];
 
     try {
-      foreach (($reflectionClass = new ReflectionClass($entityClass))->getProperties() as $reflectionProperty) {
+      foreach (($reflectionClass = new ReflectionClass($entityClass))->getProperties() as $reflectionProperty)
         foreach ($reflectionProperty->getAttributes(CmsProperty::class) as $reflectionAttribute) {
           /** @var CmsProperty $cmsProperty */
           $cmsProperty = $reflectionAttribute->newInstance();
@@ -40,7 +40,6 @@ class CmsPropertyReader
             $properties[$reflectionProperty->getName()] = $cmsProperty;
           }
         }
-      }
     } catch (ReflectionException $reflectionException) {
       throw new InvalidArgumentException("Class '{$entityClass}' does not exist.", 0, $reflectionException);
     }
