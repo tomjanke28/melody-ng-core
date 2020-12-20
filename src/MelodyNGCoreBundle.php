@@ -8,4 +8,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class MelodyNGCoreBundle extends Bundle
 {
+
+  protected $name = "MelodyNGCore";
+
 }

@@ -32,8 +32,8 @@ class CmsPropertyReader
           /** @var CmsProperty $cmsProperty */
           $cmsProperty = $reflectionAttribute->newInstance();
 
-          if ($cmsProperty->group === $group) {
-            if (in_array($cmsPropertyIdentifier = $cmsProperty->group === null ? "{$entityClass}:::{$reflectionProperty->getName()}" : "{$entityClass}::{$reflectionProperty->getName()}::{$cmsProperty->group}", $this->loadedCmsProperties))
+          if (in_array($group, $cmsProperty->groups)) {
+            if (in_array($cmsPropertyIdentifier = $group === null ? "{$entityClass}:::{$reflectionProperty->getName()}" : "{$entityClass}::{$reflectionProperty->getName()}::{$group}", $this->loadedCmsProperties))
               throw new LogicException("Only one instance of CmsProperty per group allowed on '{$entityClass}::{$reflectionProperty->getName()}'.");
 
             $this->loadedCmsProperties[] = $cmsPropertyIdentifier;

@@ -12,7 +12,7 @@ class CmsProperty
   public function __construct(
     public ?string $formType = null,
     public array $formOptions = [],
-    public ?string $group = null
+    public array $groups = [null]
   ) {
   }
 
