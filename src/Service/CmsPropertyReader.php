@@ -6,7 +6,7 @@ namespace MelodyNG\Core\Service;
 
 use InvalidArgumentException;
 use LogicException;
-use MelodyNG\Core\Attribute\CmsProperty;
+use MelodyNG\Core\Attribute\ContentProperty;
 use ReflectionClass;
 use ReflectionException;
 
@@ -22,14 +22,12 @@ class CmsPropertyReader
   }
 
   private function readCmsProperties(string $entityClass, ?string $group): array {
-    $this->cmsEntityFinder->getCmsEntity($entityClass);
-
     $properties = [];
 
     try {
       foreach (($reflectionClass = new ReflectionClass($entityClass))->getProperties() as $reflectionProperty)
-        foreach ($reflectionProperty->getAttributes(CmsProperty::class) as $reflectionAttribute) {
-          /** @var CmsProperty $cmsProperty */
+        foreach ($reflectionProperty->getAttributes(ContentProperty::class) as $reflectionAttribute) {
+          /** @var ContentProperty $cmsProperty */
           $cmsProperty = $reflectionAttribute->newInstance();
 
           if (in_array($group, $cmsProperty->groups)) {
@@ -58,7 +56,7 @@ class CmsPropertyReader
    *
    * @param object|string $entityOrEntityClass
    * @param string|null $group
-   * @return array<CmsProperty> Associative array: property names as keys, CmsProperty instances as values
+   * @return array<ContentProperty> Associative array: property names as keys, CmsProperty instances as values
    */
   public function getCmsProperties(object|string $entityOrEntityClass, ?string $group = null): array {
     if (is_object($entityOrEntityClass))

@@ -6,7 +6,7 @@ namespace MelodyNG\Core\Attribute;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_PROPERTY)]
-class CmsProperty
+class ContentProperty
 {
 
   public function __construct(

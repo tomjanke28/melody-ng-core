@@ -9,7 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\Column;
 use InvalidArgumentException;
 use LogicException;
-use MelodyNG\Core\Attribute\CmsProperty;
+use MelodyNG\Core\Attribute\ContentProperty;
 use ReflectionClass;
 use ReflectionException;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -62,7 +62,7 @@ class ContentFormBuilder
 
     /**
      * @var string $propertyName
-     * @var CmsProperty $cmsProperty
+     * @var ContentProperty $cmsProperty
      */
     foreach ($this->cmsPropertyReader->getCmsProperties($entityClass, $group) as $propertyName => $cmsProperty)
       $formBuilder->add($propertyName, $cmsProperty->formType ?? $this->guessFormType($entityClass, $propertyName), $cmsProperty->formOptions);
@@ -70,7 +70,7 @@ class ContentFormBuilder
     return $formBuilder->getForm();
   }
 
-  private function guessFormType(string $entityClass, string $propertyName) {
+  private function guessFormType(string $entityClass, string $propertyName): string {
     $classMetadata = $this->entityManager->getMetadataFactory()->getMetadataFor($entityClass);
     try {
       /** @var Column $column */
