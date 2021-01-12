@@ -28,7 +28,7 @@ class ContentFormBuilder
 {
 
   public function __construct(
-    private CmsPropertyReader $cmsPropertyReader,
+    private ContentPropertyReader $cmsPropertyReader,
     private DataTransferObjectHandler $dataTransferObjectHandler,
     private FormFactoryInterface $formFactory,
     private EntityManagerInterface $entityManager,

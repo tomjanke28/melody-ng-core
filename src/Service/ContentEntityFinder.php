@@ -12,7 +12,7 @@ use MelodyNG\Core\Exception\NoCmsEntityException;
 use ReflectionClass;
 use ReflectionException;
 
-class CmsEntityFinder
+class ContentEntityFinder
 {
 
   private ?array $cache = null;

@@ -13,7 +13,7 @@ class DataTransferObjectHandler
   private PropertyAccessor $propertyAccessor;
 
   public function __construct(
-    private CmsPropertyReader $cmsPropertyReader
+    private ContentPropertyReader $cmsPropertyReader
   ) {
     $this->propertyAccessor = PropertyAccess::createPropertyAccessor();
   }

@@ -10,14 +10,14 @@ use MelodyNG\Core\Attribute\ContentProperty;
 use ReflectionClass;
 use ReflectionException;
 
-class CmsPropertyReader
+class ContentPropertyReader
 {
 
   private array $loadedCmsProperties = [];
   private array $cache = [];
 
   public function __construct(
-    private CmsEntityFinder $cmsEntityFinder
+    private ContentEntityFinder $cmsEntityFinder
   ) {
   }
 
